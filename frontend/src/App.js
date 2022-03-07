@@ -13,7 +13,7 @@ const App = () => {
 
     const addTodo = async (todo) => {
         try {
-            await axios.post(`http://localhost:4000/api/v1/todos`, {
+            await axios.post(`${process.env.REACT_APP_URL_BASE}/todos`, {
                 content: todo.content
             });
 
@@ -25,7 +25,9 @@ const App = () => {
 
     const fetchTodos = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/api/v1/todos');
+            const res = await axios.get(
+                `${process.env.REACT_APP_URL_BASE}/todos`
+            );
 
             const resTodos = res.data.data.todos;
 
@@ -37,7 +39,7 @@ const App = () => {
 
     const editTodo = async (id, newContent) => {
         try {
-            await axios.patch(`http://localhost:4000/api/v1/todos/${id}`, {
+            await axios.patch(`${process.env.REACT_APP_URL_BASE}/todos/${id}`, {
                 content: newContent
             });
 
@@ -63,7 +65,7 @@ const App = () => {
 
     const deleteTodo = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/api/v1/todos/${id}`);
+            await axios.delete(`${process.env.REACT_APP_URL_BASE}/todos/${id}`);
 
             setTodos((prevState) => {
                 const currentTodos = prevState;
